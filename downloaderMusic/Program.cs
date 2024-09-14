@@ -1,50 +1,19 @@
 ﻿using downloaderMusic.Classes;
 using System;
 using System.Threading.Tasks;
+using CommandLine;
 
 public class Program
 {
+    public class Options
+    {
+        [Option('u', "url", Required = true, HelpText = "URL da música, playlist ou álbum no Spotify")]
+        public string Url { get; set; }
+
+        [Option('d', "directory", Required = false, HelpText = "Caminho do diretório", Default = "-")]
+        public string Directory { get; set; }
+    }
     static async Task Main(string[] args)
     {
-        var spotifyAuth = new SpotifyAuth();
-        try
-        {
-            var token = await spotifyAuth.AuthenticateAsync();
-            if (token != null)
-            {
-                if (args.Length > 0)
-                {
-                    string url = null;
-                    bool download = false;
-                    
-                    for (int i = 0; i < args.Length; i++)
-                    {
-                        if (args[i] == "-u" && i + 1 < args.Length)
-                        {
-                            url = args[i + 1];
-                        }
-
-                        if (args[i] == "-d")
-                        {
-                            download = true;
-                        }
-                    }
-
-                    if (!string.IsNullOrEmpty(url) && download)
-                    {
-                        var spotifyService = new SpotifySearch();
-                        await spotifyService.DownloadMusicFromSpotifyAsync(url);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Uso correto: -u <SpotifyURL> -d");
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Erro ao Executar: " + ex.Message);
-        }
     }
 }

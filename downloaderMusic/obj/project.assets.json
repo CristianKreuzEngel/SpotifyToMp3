@@ -31,6 +31,19 @@
           }
         }
       },
+      "CommandLineParser/2.9.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/CommandLine.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/CommandLine.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "DotNetEnv/3.1.1": {
         "type": "package",
         "dependencies": {
@@ -1746,6 +1759,28 @@
         "lib/netstandard2.0/CliWrap.xml",
         "lib/netstandard2.1/CliWrap.dll",
         "lib/netstandard2.1/CliWrap.xml"
+      ]
+    },
+    "CommandLineParser/2.9.1": {
+      "sha512": "OE0sl1/sQ37bjVsPKKtwQlWDgqaxWgtme3xZz7JssWUzg5JpMIyHgCTY9MVMxOg48fJ1AgGT3tgdH5m/kQ5xhA==",
+      "type": "package",
+      "path": "commandlineparser/2.9.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CommandLine20.png",
+        "License.md",
+        "README.md",
+        "commandlineparser.2.9.1.nupkg.sha512",
+        "commandlineparser.nuspec",
+        "lib/net40/CommandLine.dll",
+        "lib/net40/CommandLine.xml",
+        "lib/net45/CommandLine.dll",
+        "lib/net45/CommandLine.xml",
+        "lib/net461/CommandLine.dll",
+        "lib/net461/CommandLine.xml",
+        "lib/netstandard2.0/CommandLine.dll",
+        "lib/netstandard2.0/CommandLine.xml"
       ]
     },
     "DotNetEnv/3.1.1": {
@@ -5486,6 +5521,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "CommandLineParser >= 2.9.1",
       "DotNetEnv >= 3.1.1",
       "NAudio >= 2.2.1",
       "NAudio.Lame >= 2.1.0",
@@ -5496,19 +5532,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kreuz\\.nuget\\packages\\": {}
+    "/home/cristian/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\ApiDotnet---Spotify\\downloaderMusic\\downloaderMusic\\downloaderMusic.csproj",
+      "projectUniqueName": "/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/downloaderMusic.csproj",
       "projectName": "downloaderMusic",
-      "projectPath": "C:\\projects\\ApiDotnet---Spotify\\downloaderMusic\\downloaderMusic\\downloaderMusic.csproj",
-      "packagesPath": "C:\\Users\\kreuz\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\ApiDotnet---Spotify\\downloaderMusic\\downloaderMusic\\obj\\",
+      "projectPath": "/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/downloaderMusic.csproj",
+      "packagesPath": "/home/cristian/.nuget/packages/",
+      "outputPath": "/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kreuz\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/cristian/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5532,6 +5568,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "CommandLineParser": {
+            "target": "Package",
+            "version": "[2.9.1, )"
+          },
           "DotNetEnv": {
             "target": "Package",
             "version": "[3.1.1, )"
@@ -5577,7 +5617,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

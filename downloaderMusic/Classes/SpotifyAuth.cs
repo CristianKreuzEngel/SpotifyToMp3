@@ -1,17 +1,18 @@
 ﻿using System;
 using SpotifyAPI.Web;
 using System.Threading.Tasks;
+using downloaderMusic.Interfaces;
 
 namespace downloaderMusic.Classes
 {
-    public class SpotifyAuth
+    public class SpotifyAuth : ISpotifyAuth
     {
         private readonly string _clientId;
         private readonly string _clientSecret;
 
         public SpotifyAuth()
         {
-            DotNetEnv.Env.Load(@"C:\Users\kreuz\RiderProjects\downloaderMusic\.env");
+            DotNetEnv.Env.Load(@"/home/cristian/project/ApiDotnet---Spotify/.env");
             _clientId = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_ID");
             _clientSecret = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_SECRET");
         }
