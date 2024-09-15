@@ -1,63 +1,41 @@
 ﻿using SpotifyAPI.Web;
 using YoutubeExplode;
-using YoutubeExplode.Converter;
 using System;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using YoutubeExplode.Common;
 
 namespace downloaderMusic.Classes;
 
 public class SpotifySearch
 {
-    private readonly SpotifyAuth _spotifyAuth;
+    private readonly SpotifyClient _spotifyClient;
     private readonly YoutubeClient _youtubeClient;
 
-    public SpotifySearch()
+    public SpotifySearch(SpotifyClient spotifyClient)
     {
-        _spotifyAuth = new SpotifyAuth();
+        _spotifyClient = spotifyClient;
         _youtubeClient = new YoutubeClient();
     }
 
-    public async Task DownloadMusicFromSpotifyAsync(string spotifyUrl)
-    {
-        var spotifyClient = await _spotifyAuth.AuthenticateAsync();
-        Console.WriteLine("Carregando...");
-        string trackId = ExtractTrackInfo(spotifyUrl);
-
-        var track = await GetTrackFromSpotify(trackId, spotifyClient);
-
-        if (!string.IsNullOrEmpty(track))
-        {
-            Console.WriteLine("Música encontrada no spotify....");
-            Console.WriteLine(track);
-            Console.WriteLine("Pesquisando no youtube...");
-            var searchResults = await _youtubeClient.Search.GetVideosAsync(track);
-            var video = searchResults.FirstOrDefault();
-        }
-    }
-
-    private string ExtractTrackInfo(string spotifyUrl)
+    public static string[] ExtractTrackInfo(string spotifyUrl)
     {
         var uri = new Uri(spotifyUrl);
-        string[] segments = uri.AbsolutePath.Split('/');
-        return segments.Last();
+        return uri.AbsolutePath.Split('/');
+    }
+    public async Task<string> GetTrackFromSpotify(string trackId)
+    {
+        var track = await _spotifyClient.Tracks.Get(trackId);
+        return track?.Name;
+    }
+    public async Task<FullAlbum> GetAlbumFromSpotify(string albumId)
+    {
+        FullAlbum album = await _spotifyClient.Albums.Get(albumId);
+        return album;
+    }
+    public async Task<FullPlaylist> GetPlaylistFromSpotify(string playlistId)
+    {
+        FullPlaylist playlist = await _spotifyClient.Playlists.Get(playlistId);
+        return playlist;
     }
 
-    private async Task<string> GetTrackFromSpotify(string trackId, SpotifyClient spotifyClient)
-    {
-        var track = await spotifyClient.Tracks.Get(trackId);
-        return track?.Name;
-    }
-    private async Task<string> GetAlbumFromSpotify(string trackId, SpotifyClient spotifyClient)
-    {
-        var track = await spotifyClient.Tracks.Get(trackId);
-        return track?.Name;
-    }
-    private async Task<string> GetPlaylistFromSpotify(string trackId, SpotifyClient spotifyClient)
-    {
-        var track = await spotifyClient.Tracks.Get(trackId);
-        return track?.Name;
-    }
+
 }

@@ -12,7 +12,7 @@ namespace downloaderMusic.Classes
 
         public SpotifyAuth()
         {
-            DotNetEnv.Env.Load(@"/home/cristian/project/ApiDotnet---Spotify/.env");
+            DotNetEnv.Env.Load(@"/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/.env");
             _clientId = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_ID");
             _clientSecret = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_SECRET");
         }

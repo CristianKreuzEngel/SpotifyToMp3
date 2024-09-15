@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("downloaderMusic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c1573ec64c4c4a0a6544ff6b54c2aeb46b78f63")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0699beab7b7014693f55e1e40c3701836a55f3af")]
 [assembly: System.Reflection.AssemblyProductAttribute("downloaderMusic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("downloaderMusic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

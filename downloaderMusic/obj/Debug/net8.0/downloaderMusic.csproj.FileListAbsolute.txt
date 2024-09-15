@@ -71,3 +71,4 @@ C:/Users/kreuz/RiderProjects/downloaderMusic/downloaderMusic/bin/Debug/net8.0/Sp
 /home/cristian/project/ApiDotnet---Spotify/downloaderMusic/obj/Debug/net8.0/downloaderMusic.genruntimeconfig.cache
 /home/cristian/project/ApiDotnet---Spotify/downloaderMusic/obj/Debug/net8.0/ref/downloaderMusic.dll
 /home/cristian/project/ApiDotnet---Spotify/downloaderMusic/obj/Debug/net8.0/downloaderMusic.csproj.CopyComplete
+/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/bin/Debug/net8.0/CommandLine.dll
