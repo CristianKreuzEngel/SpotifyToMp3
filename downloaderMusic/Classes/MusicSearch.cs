@@ -1,20 +1,31 @@
 ﻿using SpotifyAPI.Web;
 using YoutubeExplode;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using YoutubeExplode.Common;
+using YoutubeExplode.Search;
+using YoutubeExplode.Videos;
 
 namespace downloaderMusic.Classes;
 
-public class SpotifySearch
+public class MusicSearch
 {
     private readonly SpotifyClient _spotifyClient;
     private readonly YoutubeClient _youtubeClient;
 
-    public SpotifySearch(SpotifyClient spotifyClient)
+    public MusicSearch(SpotifyClient spotifyClient)
     {
         _spotifyClient = spotifyClient;
         _youtubeClient = new YoutubeClient();
+        
     }
+    public MusicSearch()
+    {
+        _youtubeClient = new YoutubeClient();
+        
+    }
+
 
     public static string[] ExtractTrackInfo(string spotifyUrl)
     {
@@ -37,5 +48,18 @@ public class SpotifySearch
         return playlist;
     }
 
+    public async Task<VideoSearchResult?> GetMusicYoutube(string track)
+    {
+        var searchResults = await _youtubeClient.Search.GetVideosAsync(track);
+        var video = searchResults.FirstOrDefault();
+
+        if (video == null)
+        {
+            Console.WriteLine("Nenhuma música encontrada no YouTube");
+            return null;
+        }
+
+        return video;
+    }
 
 }

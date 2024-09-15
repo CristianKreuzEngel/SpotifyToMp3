@@ -5,24 +5,17 @@ using downloaderMusic.Interfaces;
 using YoutubeExplode;
 using YoutubeExplode.Videos;
 using YoutubeExplode.Converter;
+using YoutubeExplode.Search;
 
 namespace downloaderMusic.Classes
 {
     public class MusicDownload(YoutubeClient youtubeClient) : IMusicDonwload
     {
-        public async Task DownloadMusic(Video video, string filePath)
+        public async Task DownloadMusic(VideoSearchResult video, string filePath)
         {
             try
             {
                 Console.WriteLine($"Baixando: {video.Title}");
-                string musicDirectory = Path.Combine(Directory.GetCurrentDirectory(), "music");
-                if (!Directory.Exists(musicDirectory))
-                {
-                    Directory.CreateDirectory(musicDirectory);
-                }
-
-                filePath = Path.Combine(musicDirectory, $"{video.Title}.mp3");
-                
                 await youtubeClient.Videos.DownloadAsync(
                     video.Url,
                     filePath,
