@@ -1,6 +1,10 @@
+using System.Threading.Tasks;
+using YoutubeExplode.Search;
+
 namespace downloaderMusic.Interfaces;
 
-public interface IMusicDonwload
+public interface IMusicDownload
 {
-    public void DownloadMusic(){}
+    Task DownloadMusic(VideoSearchResult video, string filePath);
+    Task DownloadAndSaveMusic(string trackName, string? directory);
 }

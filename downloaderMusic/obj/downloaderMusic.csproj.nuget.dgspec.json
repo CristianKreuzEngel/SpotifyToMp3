@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/downloaderMusic.csproj": {}
+    "C:\\projects\\ApiDotnet---Spotify\\ApiDotnet---Spotify\\downloaderMusic\\downloaderMusic.csproj": {}
   },
   "projects": {
-    "/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/downloaderMusic.csproj": {
+    "C:\\projects\\ApiDotnet---Spotify\\ApiDotnet---Spotify\\downloaderMusic\\downloaderMusic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/downloaderMusic.csproj",
+        "projectUniqueName": "C:\\projects\\ApiDotnet---Spotify\\ApiDotnet---Spotify\\downloaderMusic\\downloaderMusic.csproj",
         "projectName": "downloaderMusic",
-        "projectPath": "/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/downloaderMusic.csproj",
-        "packagesPath": "/home/cristian/.nuget/packages/",
-        "outputPath": "/home/cristian/project/ApiDotnet---Spotify/downloaderMusic/obj/",
+        "projectPath": "C:\\projects\\ApiDotnet---Spotify\\ApiDotnet---Spotify\\downloaderMusic\\downloaderMusic.csproj",
+        "packagesPath": "C:\\Users\\kreuz\\.nuget\\packages\\",
+        "outputPath": "C:\\projects\\ApiDotnet---Spotify\\ApiDotnet---Spotify\\downloaderMusic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/cristian/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\kreuz\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

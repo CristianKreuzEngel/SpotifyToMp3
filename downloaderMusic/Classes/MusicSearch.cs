@@ -1,6 +1,7 @@
 ﻿using SpotifyAPI.Web;
 using YoutubeExplode;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YoutubeExplode.Common;
@@ -32,10 +33,10 @@ public class MusicSearch
         var uri = new Uri(spotifyUrl);
         return uri.AbsolutePath.Split('/');
     }
-    public async Task<string> GetTrackFromSpotify(string trackId)
+    public async Task<FullTrack> GetTrackFromSpotify(string trackId)
     {
         var track = await _spotifyClient.Tracks.Get(trackId);
-        return track?.Name;
+        return track;
     }
     public async Task<FullAlbum> GetAlbumFromSpotify(string albumId)
     {
@@ -61,5 +62,11 @@ public class MusicSearch
 
         return video;
     }
+    public async Task<List<VideoSearchResult>> GetMusicsYoutube(string track)
+    {
+        var searchResults = await _youtubeClient.Search.GetVideosAsync(track);
+        return searchResults.OfType<VideoSearchResult>().Take(3).ToList();
+    }
+
 
 }
