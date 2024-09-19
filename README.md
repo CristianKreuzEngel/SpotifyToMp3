@@ -1,4 +1,4 @@
-# Music Downloader
+# Spotify To MP3
 
 Este é um projeto de linha de comando que permite baixar músicas, álbuns e playlists do Spotify, além de realizar buscas no YouTube para o download de faixas individuais. Ele utiliza a **SpotifyAPI** para buscar informações das músicas e **YoutubeExplode** para realizar o download de vídeos e convertê-los em arquivos MP3.
 
