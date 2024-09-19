@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "downloaderMusic", "downloaderMusic\downloaderMusic.csproj", "{228AC1B8-AD20-4029-9741-805F14C3A8B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyToMp3", "SpotifyToMp3\SpotifyToMp3.csproj", "{228AC1B8-AD20-4029-9741-805F14C3A8B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
