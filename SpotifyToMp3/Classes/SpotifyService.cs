@@ -8,9 +8,9 @@ namespace SpotifyToMp3.Classes
     {
         private readonly SpotifyAuth _spotifyAuth;
 
-        public SpotifyService(SpotifyAuth spotifyAuth)
+        public SpotifyService()
         {
-            _spotifyAuth = spotifyAuth;
+            _spotifyAuth = new SpotifyAuth();
         }
 
         public async Task<FullTrack> GetTrack(string trackId)

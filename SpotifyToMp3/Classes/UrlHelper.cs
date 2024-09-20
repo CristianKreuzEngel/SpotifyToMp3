@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
 
-public static class UrlHelper
+namespace SpotifyToMp3.Classes;
+
+public class UrlHelper
 {
-    public static (string Source, string Type, string Id) ExtractUrlInfo(string url)
+    public (string Source, string Type, string Id) ExtractUrlInfo(string url)
     {
         if (url.Contains("spotify.com"))
         {
