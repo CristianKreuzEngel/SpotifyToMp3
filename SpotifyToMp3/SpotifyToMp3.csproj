@@ -32,7 +32,6 @@
 
     <ItemGroup>
       <None Remove="obj\**" />
-      <None Remove=".env" />
     </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ Este é um projeto de linha de comando que permite baixar músicas, álbuns e pl
 
 ## Funcionalidades
 
-- **Download de faixas individuais, álbuns e playlists do Spotify**
+- **Download de faixas individuais, álbuns e playlists do Spotify e do Youtube**
 - **Busca por músicas no YouTube**
 - **Escolha de até 3 resultados de pesquisa no YouTube para o download**
 - **Download automático e salvamento em diretório especificado**

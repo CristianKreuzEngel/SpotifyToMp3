@@ -27,65 +27,75 @@ public class Program
         {
             var download = new FileDownload(); 
             var searchService = new MusicSearch();
-            
+            var (source, type, id) = searchService.IdentificatorUrl(op.Url);
             if (!string.IsNullOrEmpty(op.Url) && string.IsNullOrEmpty(op.KeyWords))
             {
-                string[] url = MusicSearch.ExtractTrackInfo(op.Url);
-                var type = url[^2];
-                var id = url.Last();
-                switch (type)
+                switch (source) 
                 {
-                    case "track":
-                        var track = await searchService.GetTrackFromSpotify(id);
-                        var artistNames = string.Join(", ", track.Artists.Select(artist => artist.Name));
-                        Console.WriteLine($"Música encontrada: {track.Name} - {artistNames}");
-                        var videoTrack = await searchService.GetMusicYoutube($"{track.Name} - {artistNames}");
-                        var directory = download.DefineDirectory(videoTrack, op.Directory);
-                        await download.DownloadMusic(videoTrack, directory);
-                        break;
-
-                    case "album":
-                        var album = await searchService.GetAlbumFromSpotify(id);
-                        Console.WriteLine($"Álbum encontrado: {album.Name}");
-                    
-                        foreach (var albumTrack in album.Tracks.Items)
+                    case "Spotify":
+                        switch (type) 
                         {
-                            var albumTrackArtistNames = string.Join(", ", albumTrack.Artists.Select(artist => artist.Name));
-                            Console.WriteLine($"Baixando faixa: {albumTrack.Name} - {albumTrackArtistNames}");
-                            var videoAlbumTrack = await searchService.GetMusicYoutube($"{albumTrack.Name} - {albumTrackArtistNames}");
-                            var directoryAlbumTrack = download.DefineDirectory(videoAlbumTrack, op.Directory);
-                            await download.DownloadMusic(videoAlbumTrack, directoryAlbumTrack);
+                            case "track":
+                                var track = await searchService.GetTrackFromSpotify(id);
+                                var artistNames = string.Join(", ", track.Artists.Select(artist => artist.Name));
+                                Console.WriteLine($"Música encontrada: {track.Name} - {artistNames}");
+                                var videoTrack = await searchService.GetMusicYoutube($"{track.Name} - {artistNames}");
+                                var directory = download.DefineDirectory(videoTrack, op.Directory);
+                                await download.DownloadMusic(videoTrack, directory);
+                                break;
+                            case "album":
+                                var album = await searchService.GetAlbumFromSpotify(id);
+                                Console.WriteLine($"Álbum encontrado: {album.Name}");
+                                foreach (var albumTrack in album.Tracks.Items)
+                                {
+                                    var albumTrackArtistNames = string.Join(", ", albumTrack.Artists.Select(artist => artist.Name));
+                                    var videoAlbumTrack = await searchService.GetMusicYoutube($"{albumTrack.Name} - {albumTrackArtistNames}");
+                                    var directoryAlbumTrack = download.DefineDirectory(videoAlbumTrack, op.Directory);
+                                    await download.DownloadMusic(videoAlbumTrack, directoryAlbumTrack);
+                                }
+                                break; 
+                            case "playlist":
+                                var playlist = await searchService.GetPlaylistFromSpotify(id);
+                                foreach (var playlistTrack in playlist.Tracks.Items)
+                                {
+                                    if (playlistTrack.Track is FullTrack fullTrack)
+                                    {
+                                        var videoPlaylistTrack = await searchService.GetMusicYoutube($"{fullTrack.Name} - {string.Join(", ", fullTrack.Artists.Select(artist => artist.Name))}");
+                                        var directoryPlaylistTrack = download.DefineDirectory(videoPlaylistTrack, op.Directory);
+                                        await download.DownloadMusic(videoPlaylistTrack, directoryPlaylistTrack);
+                                    }
+                                }
+                                break;
                         }
                         break;
 
-                    case "playlist":
-                        var playlist = await searchService.GetPlaylistFromSpotify(id);
-                        Console.WriteLine($"Playlist encontrada: {playlist.Name}");
-                        foreach (var playlistTrack in playlist.Tracks.Items)
+                    case "YouTube":
+        
+                        switch (type)
                         {
-                            if (playlistTrack.Track is FullTrack fullTrack)
-                            {
-                                var playlistTrackArtistNames = string.Join(", ", fullTrack.Artists.Select(artist => artist.Name));
-                                Console.WriteLine($"Baixando faixa: {fullTrack.Name} - {playlistTrackArtistNames}");
-                                var videoPlaylistTrack = await searchService.GetMusicYoutube($"{fullTrack.Name} - {playlistTrackArtistNames}");
-                                var directoryPlaylistTrack = download.DefineDirectory(videoPlaylistTrack, op.Directory);
-                                await download.DownloadMusic(videoPlaylistTrack, directoryPlaylistTrack);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Item da playlist não é uma faixa válida.");
-                            }
+                            case "video":
+                                var video = await searchService.GetMusicYoutube(id);
+                                var dir = download.DefineDirectory(video, op.Directory);
+                                await download.DownloadMusic(video, dir);
+                                break; 
+                            case "playlist":
+                                var playlistVideos = await searchService.GetPlaylistVideosFromYoutube(id);
+                                foreach (var videoItem in playlistVideos)
+                                {
+                                    var directoryPlaylistVideo = download.DefineDirectory(videoItem, op.Directory);
+                                    await download.DownloadMusic(videoItem, directoryPlaylistVideo);
+                                }
+                                break;
                         }
                         break;
-
-                default:
-                    Console.WriteLine("Tipo inválido. Por favor verifique a Url informada e tente novamente.");
-                    break;
+                    default:
+                        Console.WriteLine("Tipo inválido de URL. Verifique a URL informada.");
+                        break;
                 }
             }else if (string.IsNullOrEmpty(op.Url) && !string.IsNullOrEmpty(op.KeyWords))
             {
                 Console.WriteLine("Pesquisando...");
-                var searchResults = await searchService.GetMusicsYoutube(op.KeyWords);
+                var searchResults = await searchService.GetYoutubeVideos(op.KeyWords);
                 for (int i = 0; i < 3 && i < searchResults.Count; i++)
                 {
                     var videos = searchResults[i];
@@ -113,7 +123,6 @@ public class Program
             {
                 Console.WriteLine("Por favor digite um comando. Em caso de dúvida digite --help");
             }
-
         });
     }
 }
